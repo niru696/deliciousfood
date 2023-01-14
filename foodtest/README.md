@@ -6,7 +6,7 @@ setup basic return (component name)
 or my personal favorite "shake and bake"
 export default
 const Search = () => {
-  return <h1>Dude, where is my car<h1>
+  return <h1>Dude, where is my car</h1>
 }
 export default Search
 import all of them in App.js
