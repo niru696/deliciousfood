@@ -11,6 +11,20 @@ const AppProvider = ({children}) => {
     const [meals, setMeals] = useState([]);
     const [searchtext, setSearchText] = useState('');
     const [Mealscount, setMealscount] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedMeal, setSelectedMeal] = useState(null);
+
+    const closeModal = () => {
+        setShowModal(false)
+      }
+  const selectMeal = (idMeal, favoriteMeal) => {
+    let meal;
+    
+      meal = meals.find((meal) => meal.idMeal === idMeal);
+    
+    setSelectedMeal(meal);
+    setShowModal(true)
+  }
     const fetRandomMeals = () => {
         fetchMeals(randomMealURL);
     }
@@ -42,7 +56,8 @@ const AppProvider = ({children}) => {
         fetchMeals(`${allMealUrl}${searchtext}`);
     },[searchtext])
     return(
-        <AppContext.Provider value={{meals, loading,setSearchText, fetRandomMeals,refreshPage,Mealscount}}>
+        <AppContext.Provider value={{meals, loading,setSearchText, fetRandomMeals,refreshPage,
+        Mealscount,showModal,selectedMeal,setSelectedMeal,closeModal,selectMeal}}>
            {children}
         </AppContext.Provider>
     )
